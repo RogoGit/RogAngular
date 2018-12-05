@@ -2,17 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { PagedesignComponent } from './LabWork4Test/Login/pagedesign.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    PagedesignComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [PagedesignComponent]
 })
 export class AppModule { }
