@@ -1,38 +1,38 @@
 <div class="container">
-    <form (ngSubmit)="onSubmit()" #regForm="ngForm">
-      <h1> Форма входа</h1>
-      <div class="form-group">
-        <br>
-        <label for="formName">Логин</label>
-        <input type="text" class="form-control" id="formName"
-               required
-               [(ngModel)]="model.name" name="nameInp"
-               #name="ngModel">
+  <form (ngSubmit)="onSubmit()" #regForm="ngForm">
+    <h1> Форма входа</h1>
+    <div class="form-group">
+      <br>
+      <label for="formName">Логин</label>
+      <input type="text" class="form-control" id="formName"
+             required
+             [(ngModel)]="model.name" name="nameInp"
+             #name="ngModel">
       <!--  <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
           Необходимо заполнить это поле
         </div> -->
-      </div>
+    </div>
 
-      <div class="form-group">
-        <label for="pass">Пароль</label>
-        <input type="password" class="form-control" id="pass" required
-               [(ngModel)]="model.password" name="passw"
-               #name="ngModel">
-       <!-- <div [hidden]="name.valid || name.pristine"
-             class="alert alert-danger">
-          Необходимо заполнить оба поля!
-        </div> -->
-      </div>
+    <div class="form-group">
+      <label for="pass">Пароль</label>
+      <input type="password" class="form-control" id="pass" required
+             [(ngModel)]="model.password" name="passw"
+             #name="ngModel">
+      <!-- <div [hidden]="name.valid || name.pristine"
+            class="alert alert-danger">
+         Необходимо заполнить оба поля!
+       </div> -->
+    </div>
 
-      <button type="submit" class="btn btn-success" [disabled]="!regForm.form.valid"> Войти </button>
-      <button type="button" class="btn btn-default"  (click)="regForm?.reset()"> Очистить поля </button>
+    <button type="submit" class="btn btn-success" [disabled]="!regForm.form.valid"> Войти </button>
+    <button type="button" class="btn btn-default"  (click)="regForm?.reset()"> Очистить поля </button>
 
-      <br>
-      <p style="font-size: 14pt"> Ещё не зарегистрировались? </p>
-      <button type="submit" class="btn btn-success" [disabled]="!regForm.form.valid"> Зарегистрировать </button>
-    </form>
-  </div>
+    <br>
+    <p style="font-size: 14pt"> Ещё не зарегистрировались? </p>
+    <button type="submit" class="btn btn-success" [disabled]="!regForm.form.valid"> Зарегистрировать </button>
+  </form>
+</div>
 
 
 
@@ -50,7 +50,6 @@
       Name is required
     </div>
   </div>
-
   <div class="form-group">
     <label for="pass">Alter Ego</label>
     <input type="password" class="form-control" id="pass" required
@@ -62,7 +61,6 @@
       Name is required
     </div>
   </div>
-
   <button type="submit" class="btn btn-success" (click)="regForm.reset()">Submit</button>
 </form>
 </div>-->

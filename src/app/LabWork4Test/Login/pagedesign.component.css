@@ -1,4 +1,26 @@
+
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+
+@media only screen and (min-device-width: 1049px) and (max-device-height: 740px) {
+  .BackPanel {
+    display: flex;
+    flex-direction: column;
+    height: 98% !important;
+    position: relative !important;
+  }
+  #AuthorizationForm {
+    width: 70% !important;
+    margin-left: 15% !important;
+    margin-right: 15% !important;
+    padding-left: 23%;
+  }
+  #Greetings {
+    width: 70% !important;
+    margin-left: 15% !important;
+    margin-right: 15% !important;
+    text-align: center;
+  }
+}
 
 @media only screen and (min-device-width: 775px) and (max-device-width: 1048px) {
 
@@ -8,7 +30,7 @@
 
 }
 
-@media only screen and (max-width : 774px) {
+@media only screen and (max-device-width : 774px)  {
   input[name="nameInp"] {
     width: 80% !important;
   }
@@ -20,6 +42,7 @@
   .BackPanel {
     display: flex;
     flex-direction: column;
+    position: relative !important;
   }
 
   #LabHeader {
@@ -29,11 +52,12 @@
   #AuthorizationForm {
     width: 95% !important;
     height: 60% !important;  /*mobile - 80% */
+    padding-left: 15% !important;
     margin-left: 2.5%;
     margin-right: 2.5%;
     font-size: 12pt !important;
-    display: flex;
-    flex-direction: column;
+   /* display: flex;
+    flex-direction: column;*/
   }
 
   #Greetings {
@@ -42,17 +66,17 @@
     margin-left: 2.5%;
     margin-right: 2.5%;
     font-size: 16pt !important;
-    display: flex;
-    flex-direction: column;
+  /*  display: flex;
+    flex-direction: column;*/
   }
 
   app-reg-form {
     margin-left: 5% !important;
   }
 
- h1 {
-   font-size: 18pt;
- }
+  h1 {
+    font-size: 18pt;
+  }
 
 }
 
@@ -117,7 +141,7 @@ body {
   margin-right: 2.5%;
   text-align: center;
   font-size: 22pt;
-  }
+}
 
 #AuthorizationForm {
   float: left;
@@ -126,8 +150,7 @@ body {
   margin-left: 2.5%;
   margin-right: 2.5%;
   font-size: 24pt;
-  display: flex;
-  flex-direction: column;
+
 }
 
 input[type="button"] {
@@ -142,8 +165,6 @@ input[type="button"] {
   margin-left: 2.5%;
   margin-right: 2.5%;
   font-size: 24pt;
-  display: flex;
-  flex-direction: column;
 }
 
 #cl {
@@ -156,4 +177,3 @@ input[type="button"] {
 p {
   padding: 10px;
 }
-
