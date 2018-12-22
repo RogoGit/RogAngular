@@ -236,6 +236,7 @@ input[name="Ykoord"] {
 
   .BackPanel {
     display: flex;
+    position: relative !important;
     flex-direction: column;
   }
 
@@ -315,6 +316,7 @@ input[name="Ykoord"] {
     display: flex;
     flex-direction: column;
     height: 98% !important;
+    position: relative !important;
   }
 
   #Area {
