@@ -16,6 +16,7 @@ export class AreaComponent implements OnInit {
   dotsCollection;
   submitted = false;
   isNaN: Function = Number.isNaN;
+  round: Function = Math.round;
   public radiuses = [
     {value: '0.5', display: '0.5', checked: true}, {value: '1', display: '1.0' , checked: true},
     {value: '1.5', display: '1.5 ' , checked: true}, {value: '2', display: '2.0 ' , checked: true}
@@ -37,9 +38,11 @@ export class AreaComponent implements OnInit {
 
   ngOnInit() {
     this.dotsCollection = [
-      { x: '1', y: '0.3', r: '0.5', res: true},
-      { x: '-1', y: '-0.6', r: '0.5', res: false}
-    ];
+     // [{x: '1', y: '0.3', r: '0.5', res: true}, {x: '-1', y: '-0.6', r: '0.5', res: false}],
+      // [{x: '1', y: '0.3', r: '1', res: true}, {x: '-1', y: '-0.6', r: '1', res: false}],
+      // [{x: '1', y: '0.3', r: '1.5', res: true}, {x: '-1', y: '-0.6', r: '1.5', res: false}],
+      {x: '1', y: '0.3', r: '2', res: true}, {x: '-1', y: '-0.6', r: '2', res: false}
+  ];
   }
   deleteDots() {
     this.dotsCollection = [
