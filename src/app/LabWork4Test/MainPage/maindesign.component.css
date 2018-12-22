@@ -1,0 +1,341 @@
+.BackPanel {
+  height: 95%;
+  width: 98%;
+  position: absolute;
+  margin-top: 1%;
+  margin-left: 1%;
+
+  border: 2px solid black;
+  border-radius: 25px;
+
+  background: lightblue;
+  /*margin: 0 auto;*/
+}
+
+.alert.alert-danger {
+  width: 86%;
+  height: 10%;
+  margin-left: 10%;
+  font-size: 12pt;
+}
+
+table {
+  background: silver;
+  border-collapse: separate;
+  border: 2px solid black;
+  border-spacing: 10px;
+  font-size: 16pt;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  margin-top: 1%;
+}
+
+
+.input-area {
+  width: 30%;
+}
+
+input[type="radio"]{
+  margin: 0 10px 0 10px;
+}
+
+.enter {
+  margin-left: 5%;
+  font-size: 14pt;
+  padding-right: 8px;
+}
+
+.enter:hover {
+  border: 1px solid crimson;
+}
+
+svg {
+
+  /*
+    width: 380px;
+    height: 340px;
+  */
+}
+
+#PageHeader {
+  text-align: center;
+  width: 95%;
+  height: 5.5%;
+  margin-top: 1%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  margin-bottom: 1px;
+  font-size: 24pt;
+}
+
+#radPan {
+  margin-left: 1.5%;
+  margin-right: 2.5%;
+  margin-top: 2.5%;
+  margin-bottom: 1.5%;
+  width: 15%;
+  background: aquamarine;
+}
+
+/*input[type="button"] {
+  margin-left: 3%;
+  margin-top: 1%
+}
+
+input[type="submit"] {
+  margin-left: 3%;
+  margin-top: 1%
+} */
+
+.btn.btn-default {
+  margin-left: 3%;
+  margin-top: 1%
+}
+
+.btn.btn-success {
+  margin-left: 3%;
+  margin-top: 1%
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid aquamarine;
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid crimson;
+}
+
+.MainPanels {
+  border-radius: 25px;
+  background: cornflowerblue;
+  display: inline-block;
+}
+
+#yPan {
+  margin-left: 1.5%;
+  margin-right: 2.5%;
+  margin-top: 2.5%;
+  margin-bottom: 0.5%;
+  width: 50%;
+  height: 10%;
+}
+
+.alert {
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+input[name="Ykoord"] {
+  width: 100%;
+}
+
+#Area {
+  padding-left: 5%;
+  float: left;
+  width: 40%;
+  height: 45%;
+  margin-top: 1%;
+  margin-left: 2.5%;
+  text-align: center;
+}
+
+#xx {
+  margin-left: 1.5%;
+  margin-right: 2.5%;
+  margin-top: 2.5%;
+  margin-bottom: 0.5%;
+  width: 10%;
+  background: crimson;
+}
+
+#CheckTable {
+  float: right;
+  width: 80%;
+  height: 38.5%;
+  margin-top: 1%;
+  margin-bottom: 0.5%;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 20pt;
+  overflow: auto;
+  padding: 15px;
+}
+
+#Fields {
+  float: right;
+  width: 53%;
+  height: 45%;
+  margin-top: 1%;
+  margin-right: 2.5%;
+  margin-left: 1%;
+  text-align: center;
+  font-size: 14pt;
+  display: inline-block;
+ }
+
+
+#Buttons {
+  float: left;
+  width: 53%;
+  height: 9.5%;
+  margin-left: 2%;
+  margin-right: 2.5%;
+  margin-top: 0.5%;
+  text-align: center;
+}
+
+@media only screen and (min-device-width: 786px) and (max-device-width: 1059px) {
+
+  #xx {
+    width: 14% !important;
+    font-size: 11pt !important;
+  }
+
+  #radPan {
+    width: 11%;
+    font-size: 11pt;
+  }
+
+  input[name="Ykoord"] {
+    width: 70% !important;
+  }
+
+  #CheckTable {
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    overflow: auto !important;
+  }
+
+  alert.alert-danger {
+    font-size: 8pt !important;
+  }
+
+  #Area {
+    width: 50% !important;
+  }
+
+  #Fields {
+    width: 43% !important;
+  }
+
+  .btn.btn-default {
+    margin-left: 1% !important;
+    margin-top: 1% !important;
+  }
+
+  .btn-success {
+    margin-left: 1% !important;
+    margin-top: 1% !important;
+  }
+
+}
+
+@media only screen  and (min-device-width: 379px) and (max-device-width: 785px) {
+
+  .BackPanel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  table {
+    font-size: 10pt !important;
+  }
+
+  alert.alert-danger {
+    font-size: 8pt !important;
+  }
+
+  #Area {
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+  }
+
+  #CheckTable {
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    overflow: auto !important;
+  }
+
+  #Fields {
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    height: 50% !important;
+    padding-bottom: 3% !important;
+  }
+
+  #xx {
+    width: 14% !important;
+    font-size: 11pt !important;
+  }
+
+  #radPan {
+    width: 14%;
+    font-size: 11pt;
+  }
+
+}
+
+@media only screen and (max-device-width: 378px) {
+
+  svg {
+    height: 80% !important;
+    width: 80% !important;
+  }
+
+  alert.alert-danger {
+    font-size: 8pt !important;
+  }
+
+
+  #xx {
+    width: 19% !important;
+    font-size: 9pt !important;
+  }
+
+  #radPan {
+    width: 11%;
+    font-size: 11pt;
+  }
+
+  table {
+    font-size: 10pt !important;
+  }
+
+  #PageHeader {
+    font-size: 16pt !important;
+  }
+
+
+  .BackPanel {
+    display: flex;
+    flex-direction: column;
+    height: 98% !important;
+  }
+
+  #Area {
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+  }
+
+  #CheckTable {
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    overflow: auto !important;
+  }
+
+  #Fields {
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    height: 50% !important;
+    padding-bottom: 3% !important;
+  }
+
+}
