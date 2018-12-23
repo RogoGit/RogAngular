@@ -2,15 +2,18 @@ import {Component, Directive, OnInit} from '@angular/core';
 import {Dot} from './Dot';
 import {Router} from '@angular/router';
 import {AbstractControl, FormControl, NG_VALIDATORS, Validator, ValidatorFn} from '@angular/forms';
+import {ApiService} from '../../../api.service';
 
 @Component({
   selector: 'app-area-render',
   templateUrl: './area.component.html',
-  styleUrls: ['../maindesign.component.css']
+  styleUrls: ['../maindesign.component.css'],
+  providers: [ApiService]
 })
 
 export class AreaComponent implements OnInit {
   constructor(private _router: Router) {}
+  constructor(private server: ApiService) {}
   model = new Dot('', 0 , '0.5');
   dotsCollection;
   submitted = false;
@@ -40,28 +43,37 @@ export class AreaComponent implements OnInit {
       // [{x: '1', y: '0.3', r: '1.5', res: true}, {x: '-1', y: '-0.6', r: '1.5', res: false}],
       {x: '1', y: '0.3', r: '1', res: true}, {x: '-1', y: '-0.6', r: '2', res: false}
   ];
+   // this.dotsCollection = this.server.getAllDots(); TODO: раскомментим - здесь будем получать точки с сервера (надеюсь)
   }
   deleteDots() {
-    this.dotsCollection = [
-    ];
+    this.dotsCollection = [];
+    // this.server.deleteAllDots(); TODO: раскомментим эти строки - будем удалять данные на сервере (надеюсь)
+    // this.dotsCollection = this.server.getAllDots();
   }
   getCoord(event) {
-    const e = event.target;
     const dim = document.querySelector('svg').getBoundingClientRect();
     const x = event.clientX - dim.left;
     const y = event.clientY - dim.top;
-      this.addDot(((x - 160) / (80 / Number(this.model.r))).toFixed(3), ((y - 160) / ((-1) * 80 / Number(this.model.r))).toFixed(3), Number(this.model.r));
+    const dot = new Dot(((x - 160) / (80 / Number(this.model.r))).toFixed(3), ((y - 160) / ((-1) * 80 / Number(this.model.r))).toFixed(3), (this.model.r));
+      this.addDot(dot);
+      // this.server.addDot(dot); TODO: расскомментим это - клики на область будут добавляться на сервер (надеюсь)
+   // this.dotsCollection = this.server.getAllDots();
   }
   onSubmit() {
     this.submitted = true;
     alert(this.selectedXes);
+    /* for (let i = 0; i < this.selectedXes.length; i++ ) { TODO: раскомментим этот блок - отправляем на сервер данные с формы
+      const dot = new Dot(this.selectedXes[i], this.model.y, this.model.r);
+      this.server.addDot(dot);
+    } */
+    // this.dotsCollection = this.server.getAllDots();
   }
   onBack() {
     this._router.navigate(['/']);
   }
-  addDot(kx, ky, dr) {
+  addDot(dot: Dot) {
     this.dotsCollection.push(
-      {x: kx, y: ky, r: dr}
+      {x: dot.x, y: dot.y, r: dot.r}
     );
   }
 }

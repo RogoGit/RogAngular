@@ -35,8 +35,10 @@ export class ApiService {
   public addDot(dot: Dot): Observable<Dot> {
     return this.http
       .post(URL + '/dots', dot)
-      // .map(response => {
-      // return new Dot();
+      .map(success => success.status)
+     //  .map(response => {
+    // const dots = response.json();
+    //  return dots;
       // })
       .catch(this.handleError);
   }
