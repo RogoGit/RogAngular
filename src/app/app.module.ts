@@ -7,6 +7,9 @@ import { PagedesignComponent } from './LabWork4Test/Login/pagedesign.component';
 import { AuthorizationFormComponent} from './LabWork4Test/Login/authorizationForm.component';
 import { MaindesignComponent} from './LabWork4Test/MainPage/maindesign.component';
 import { AreaComponent} from './LabWork4Test/MainPage/Area/area.component';
+import { ApiService} from './api.service';
+import { SessionService} from './session.service';
+import { AuthService} from './auth.service';
 
 @NgModule({
   declarations: [
@@ -18,9 +21,13 @@ import { AreaComponent} from './LabWork4Test/MainPage/Area/area.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    ApiService,
+    SessionService,
+    AuthService
+  ],
   bootstrap: [PagedesignComponent]
 })
 export class AppModule { }

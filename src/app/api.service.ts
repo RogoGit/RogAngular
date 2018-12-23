@@ -50,5 +50,14 @@ export class ApiService {
       .map(response => null)
       .catch(this.handleError);
   }
+  public signIn(username: string, password: string) {
+    return this.http
+      .post(URL + '/sign-in', {
+        username,
+        password
+      })
+      .map(response => response.json())
+      .catch(this.handleError);
+  }
 }
 
