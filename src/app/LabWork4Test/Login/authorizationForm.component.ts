@@ -24,7 +24,12 @@ export class AuthorizationFormComponent {
   model = new User('', '');
   onSubmit() {
     this.submitted = true;
-    this.doSignIn();
+    const buttonName = document.activeElement.getAttribute('name');
+    if ( buttonName === 'in') {
+      this.doSignIn();
+    } else {
+      this.doSignUp();
+    }
    // this._router.navigate(['/MainPage']);
   }
 
@@ -44,6 +49,22 @@ export class AuthorizationFormComponent {
         },
         (error) => {
           this.failed = true;
+        }
+      );
+  }
+  public doSignUp() {
+    this.api
+      .signUp(this.model.name, this.model.password)
+      .subscribe(
+        (response) => {
+          this.auth.doSignIn(
+            response.token,
+            response.name
+          );
+          this._router.navigate(['/MainPage']);
+        },
+        (error) => {
+          this.busy = true;
         }
       );
   }

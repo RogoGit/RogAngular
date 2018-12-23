@@ -25,12 +25,12 @@
        </div> -->
     </div>
 
-    <button type="submit" class="btn btn-success" [disabled]="!regForm.form.valid"> Войти </button>
+    <button type="submit" name="in" class="btn btn-success" [disabled]="!regForm.form.valid"> Войти </button>
     <button type="button" class="btn btn-default"  (click)="regForm?.reset()"> Очистить поля </button>
 
     <br>
     <p style="font-size: 14pt"> Ещё не зарегистрировались? </p>
-    <button type="submit" class="btn btn-success" [disabled]="!regForm.form.valid"> Зарегистрировать </button>
+    <button type="submit" name="up" class="btn btn-success" [disabled]="!regForm.form.valid"> Зарегистрировать </button>
   </form>
 </div>
 

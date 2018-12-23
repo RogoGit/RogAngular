@@ -65,6 +65,15 @@ export class ApiService {
       .map(response => response.json())
       .catch(this.handleError);
   }
+  public signUp(username: string, password: string) {
+    return this.http
+      .post(URL + '/sign-up', {
+        username,
+        password
+      })
+      .map(response => response.json())
+      .catch(this.handleError);
+  }
   private getRequestOptions() {
     const headers = new Headers({
       'Authorization': 'Bearer ' + this.session.accessToken
