@@ -1,8 +1,9 @@
 import {Component, Directive, OnInit} from '@angular/core';
 import {Dot} from './Dot';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AbstractControl, FormControl, NG_VALIDATORS, Validator, ValidatorFn} from '@angular/forms';
 import {ApiService} from '../../../api.service';
+import {AuthService} from '../../../auth.service';
 
 @Component({
   selector: 'app-area-render',
@@ -12,8 +13,12 @@ import {ApiService} from '../../../api.service';
 })
 
 export class AreaComponent implements OnInit {
-  constructor(private _router: Router) {}
-  constructor(private server: ApiService) {}
+  constructor(
+    private _router: Router,
+    private server: ApiService,
+    private route: ActivatedRoute,
+    private auth: AuthService,
+  ) {}
   model = new Dot('', 0 , '0.5');
   dotsCollection;
   submitted = false;
@@ -69,6 +74,7 @@ export class AreaComponent implements OnInit {
     // this.dotsCollection = this.server.getAllDots();
   }
   onBack() {
+    this.auth.doSignOut();
     this._router.navigate(['/']);
   }
   addDot(dot: Dot) {
