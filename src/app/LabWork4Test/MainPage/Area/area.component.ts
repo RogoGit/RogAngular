@@ -50,10 +50,10 @@ export class AreaComponent implements OnInit {
   }
   getCoord(event) {
     const e = event.target;
-    const dim = e.getBoundingClientRect();
+    const dim = document.querySelector('svg').getBoundingClientRect();
     const x = event.clientX - dim.left;
     const y = event.clientY - dim.top;
-    this.addDot(((x - 160) / (80 * Number(this.model.r))).toFixed(3), ((y - 160) / ((-1) * 80 * Number(this.model.r))).toFixed(3), Number(this.model.r));
+      this.addDot(((x - 160) / (80 / Number(this.model.r))).toFixed(3), ((y - 160) / ((-1) * 80 / Number(this.model.r))).toFixed(3), Number(this.model.r));
   }
   onSubmit() {
     this.submitted = true;
