@@ -11,7 +11,6 @@ import {AbstractControl, FormControl, NG_VALIDATORS, Validator, ValidatorFn} fro
 
 export class AreaComponent implements OnInit {
   constructor(private _router: Router) {}
-  old;
   model = new Dot('', 0 , '0.5');
   dotsCollection;
   submitted = false;
@@ -28,8 +27,6 @@ export class AreaComponent implements OnInit {
     {value: '1', display: '1', checked: false}, {value: '1.5', display: '1.5', checked: false},
     {value: '2', display: '2', checked: false}
   ];
-  get oldR() {
-    return this.old; }
   get selectedXes() {
     return this.Xes
       .filter(opt => opt.checked)
