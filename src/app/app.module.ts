@@ -10,6 +10,8 @@ import { AreaComponent} from './LabWork4Test/MainPage/Area/area.component';
 import { ApiService} from './api.service';
 import { SessionService} from './session.service';
 import { AuthService} from './auth.service';
+import { HttpModule} from '@angular/http';
+import { MainPageGuard} from './main-page.guard';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,14 @@ import { AuthService} from './auth.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [
     ApiService,
     SessionService,
-    AuthService
+    AuthService,
+    MainPageGuard
   ],
   bootstrap: [PagedesignComponent]
 })
