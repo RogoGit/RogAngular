@@ -27,18 +27,17 @@ export class ApiService {
   public getAllDots(): Observable<Dot[]> {
     const options = this.getRequestOptions();
     return this.http
-      .get(URL + '/dots', options)
+      .get(URL + '/main/dots', options)
       .map(response => {
         const dots = response.json();
         return dots.map((dot) => new dots(dot));
-      })
-      .catch(this.handleError);
+      }).catch(this.handleError);
   }
 
   // post
-  public addDot(dot: Dot): Observable<Dot> {
+  /*public addDot(dot: Dot): Observable<Dot> {
     const options = this.getRequestOptions();
-    return this.http
+     return this.http
       .post(URL + '/dots', dot, options)
       .map(success => success.status)
      //  .map(response => {
@@ -46,7 +45,7 @@ export class ApiService {
     //  return dots;
       // })
       .catch(this.handleError);
-  }
+  }*/
 
 // delete
   public deleteAllDots(): Observable<null> {

@@ -37,20 +37,21 @@ export class AuthorizationFormComponent {
       this.model = new User('',  '');
     }
   public doSignIn() {
-    this.api
-      .signIn(this.model.name, this.model.password)
-      .subscribe(
-        (response) => {
-          this.auth.doSignIn(
-            response.token,
-            response.name
-          );
-          this._router.navigate(['/MainPage']);
-        },
-        (error) => {
-          this.failed = true;
-        }
-      );
+    this._router.navigate(['/MainPage']);
+    // this.api
+    //   .signIn(this.model.name, this.model.password)
+    //   .subscribe(
+    //     (response) => {
+    //       this.auth.doSignIn(
+    //         response.token,
+    //         response.name
+    //       );
+    //       this._router.navigate(['/MainPage']);
+    //     },
+    //     (error) => {
+    //       this.failed = true;
+    //     }
+    //   );
   }
   public doSignUp() {
     this.api

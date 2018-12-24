@@ -13,8 +13,10 @@
     <text x="180" y="10">X</text>
     <text x="310" y="187">Y</text>
     <text x="180" y="80">{{model.r}}</text>
+    <ng-container *ngIf="dotsCollection!=[]" >
     <ng-container *ngFor="let dots of dotsCollection">
     <circle *ngIf="model.r==dots.r" [attr.cx] = "(((dots.x)*80/ model.r+160))" [attr.cy]="((-1*dots.y*80)/ model.r+160)" r="3" />
+    </ng-container>
     </ng-container>
   </svg>
   </form>
