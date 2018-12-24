@@ -265,6 +265,7 @@ input[name="Ykoord"] {
     margin-left: 5% !important;
     margin-right: 5% !important;
     overflow: auto !important;
+    margin-bottom: 38% !important;
   }
 
   #Fields {
@@ -290,7 +291,7 @@ input[name="Ykoord"] {
 @media only screen and (max-device-width: 378px) {
 
   #CheckTable {
-    margin-bottom: 27% !important;
+    margin-bottom: 42% !important;
   }
 
   svg {

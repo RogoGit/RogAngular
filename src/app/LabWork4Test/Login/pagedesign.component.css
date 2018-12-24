@@ -40,9 +40,10 @@
   }
 
   .BackPanel {
-    display: flex;
+    padding-bottom: 5% !important;
+  /*  display: flex;
     flex-direction: column;
-    position: relative !important;
+    position: relative !important;*/
   }
 
   #LabHeader {
@@ -56,18 +57,18 @@
     margin-left: 2.5%;
     margin-right: 2.5%;
     font-size: 12pt !important;
-   /* display: flex;
-    flex-direction: column;*/
+    display: flex;
+    flex-direction: column;
   }
 
   #Greetings {
     width: 95% !important;
-    height:30% !important; /*mobile - 80%*/
+    height:26.5% !important; /*mobile - 80%*/
     margin-left: 2.5%;
     margin-right: 2.5%;
     font-size: 16pt !important;
-  /*  display: flex;
-    flex-direction: column;*/
+    display: flex;
+    flex-direction: column;
   }
 
   app-reg-form {

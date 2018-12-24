@@ -46,9 +46,9 @@ export class AreaComponent implements OnInit {
      // [{x: '1', y: '0.3', r: '0.5', res: true}, {x: '-1', y: '-0.6', r: '0.5', res: false}],
       // [{x: '1', y: '0.3', r: '1', res: true}, {x: '-1', y: '-0.6', r: '1', res: false}],
       // [{x: '1', y: '0.3', r: '1.5', res: true}, {x: '-1', y: '-0.6', r: '1.5', res: false}],
-      {x: '1', y: '0.3', r: '1', res: true}, {x: '-1', y: '-0.6', r: '2', res: false}
+     // {x: '1', y: '0.3', r: '1', res: true}, {x: '-1', y: '-0.6', r: '2', res: false}
   ];
-   // this.dotsCollection = this.server.getAllDots(); TODO: раскомментим - здесь будем получать точки с сервера (надеюсь)
+    this.dotsCollection = this.server.getAllDots(); // TODO: раскомментим - здесь будем получать точки с сервера (надеюсь)
   }
   deleteDots() {
     this.dotsCollection = [];

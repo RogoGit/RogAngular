@@ -6,7 +6,8 @@ import {MainPageGuard} from './main-page.guard';
 
 const routes: Routes = [
   { path: '', component: PagedesignComponent },
-  { path: 'MainPage', component: MaindesignComponent, canActivate : [MainPageGuard] },
+  { path: 'MainPage', component: MaindesignComponent // canActivate : [MainPageGuard]
+   },
 ];
 
 @NgModule({
