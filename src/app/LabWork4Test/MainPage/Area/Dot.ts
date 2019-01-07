@@ -4,9 +4,14 @@ export class Dot {
     public y: number,
     public r: string,
     public result: boolean
-  ) { }
+  ) {
+  }
+
+  get getColor(): string{
+    return this.result ? 'green' : 'red';
+  }
 
   // constructor(values: Object = {}) {
-    // Object.assign(this, values);
+  // Object.assign(this, values);
   // }
 }

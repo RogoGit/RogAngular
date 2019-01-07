@@ -56,29 +56,27 @@ export class AreaComponent implements OnInit {
   }
 
   deleteDots() {
-    // this.dotsCollection = [];
-    // this.server.deleteAllDots(); TODO: раскомментим эти строки - будем удалять данные на сервере (надеюсь)
-    // this.dotsCollection = this.server.getAllDots();
+    this.server.deleteAllDots().subscribe();
+    this.dotsCollection = [];
   }
 
   getCoord(event) {
     const dim = document.querySelector('svg').getBoundingClientRect();
     const x = event.clientX - dim.left;
     const y = event.clientY - dim.top;
-    const dot = new Dot(((x - 160) / (80 / Number(this.model.r))).toFixed(3), Number(((Number(y) - 160) / ((-1) * 80 / Number(this.model.r))).toFixed(3)), (this.model.r), false);
-    // this.addDot(dot);
-    // this.server.addDot(dot); TODO: расскомментим это - клики на область будут добавляться на сервер (надеюсь)
-    // this.dotsCollection = this.server.getAllDots();
+    let dot = new Dot(((x - 160) / (80 / Number(this.model.r))).toFixed(3), Number(((Number(y) - 160) / ((-1) * 80 / Number(this.model.r))).toFixed(3)), (this.model.r), false);
+    this.addDot(dot);
   }
 
   onSubmit() {
     this.submitted = true;
-    alert(this.selectedXes);
-    /* for (let i = 0; i < this.selectedXes.length; i++ ) { TODO: раскомментим этот блок - отправляем на сервер данные с формы
-      const dot = new Dot(this.selectedXes[i], this.model.y, this.model.r);
-      this.server.addDot(dot);
-    } */
-    // this.dotsCollection = this.server.getAllDots();
+    let math = console;
+    math.log(this.selectedXes.length);
+    for (let i = 0; i < this.selectedXes.length; i++) {
+      math.log(this.selectedXes[i]);
+      let dot = new Dot(this.selectedXes[i], this.model.y, this.model.r, this.model.result);
+      this.addDot(dot);
+    }
   }
 
   onBack() {
@@ -86,9 +84,7 @@ export class AreaComponent implements OnInit {
     this._router.navigate(['/']);
   }
 
-  /* addDot(dot: Dot) {
-    this.dotsCollection.push(
-      {x: dot.x, y: dot.y, r: dot.r, result: dot.result}
-    );
-  } */
+  addDot(dot: Dot) {
+    this.server.addDot(dot).subscribe(d => this.dotsCollection.push(d));
+  }
 }

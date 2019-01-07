@@ -1,39 +1,48 @@
 <!DOCTYPE html>
 <div class="MainPanels" id="Area">
   <br>
-  <form  #AreaForm="ngForm">
-  <svg width="320px" height="320px" viewBox="0 0 320 320" style="margin-right: 10%; " (click)="getCoord($event)">  <!-- 30? 90?-->
-    <circle r="40" cx="160" cy="160" fill="silver"/>
-    <polygon points="160,160 160,0 320,0 320,160" fill="cornflowerblue"/>
-    <polygon points="160,160 160,0 0,0 0,160" fill="cornflowerblue"/>
-    <polygon points="160,160 80,160 160,120" fill="silver"/>
-    <polygon points="160,160 160,240 120,240 120,160" fill="silver"/>
-    <line x1="160" x2="160" y1="0" y2="320" stroke="black" stroke-width="3"/>
-    <line x1="0" x2="320" y1="160" y2="160" stroke="black" stroke-width="3"/>
-    <text x="180" y="10">X</text>
-    <text x="310" y="187">Y</text>
-    <text x="180" y="80">{{model.r}}</text>
-    <!--<ng-container *ngIf="dotsCollection!==[]" >-->
-    <ng-container *ngFor="let dots of dotsCollection">
-    <circle *ngIf="model.r==dots.r" [attr.cx] = "(((dots.x)*80/ model.r+160))" [attr.cy]="((-1*dots.y*80)/ model.r+160)" r="3"></circle>
-    </ng-container>
-    <!--</ng-container>-->
-  </svg>
+  <form #AreaForm="ngForm">
+    <svg width="320px" height="320px" viewBox="0 0 320 320" style="margin-right: 10%; " (click)="getCoord($event)">
+      <!-- 30? 90?-->
+      <circle r="40" cx="160" cy="160" fill="silver"/>
+      <polygon points="160,160 160,0 320,0 320,160" fill="cornflowerblue"/>
+      <polygon points="160,160 160,0 0,0 0,160" fill="cornflowerblue"/>
+      <polygon points="160,160 80,160 160,120" fill="silver"/>
+      <polygon points="160,160 160,240 120,240 120,160" fill="silver"/>
+      <line x1="160" x2="160" y1="0" y2="320" stroke="black" stroke-width="3"/>
+      <line x1="0" x2="320" y1="160" y2="160" stroke="black" stroke-width="3"/>
+      <text x="180" y="10">X</text>
+      <text x="310" y="187">Y</text>
+      <text x="180" y="80">{{model.r}}</text>
+      <!--<ng-container *ngIf="dotsCollection!==[]" >-->
+      <ng-container *ngFor="let dots of dotsCollection">
+        <ng-container *ngIf="dots.result===true">
+          <circle *ngIf="model.r==dots.r" [attr.cx]="(((dots.x)*80/ model.r+160))"
+                  [attr.cy]="((-1*dots.y*80)/ model.r+160)" r="3" fill="green"></circle>
+        </ng-container>
+        <ng-container *ngIf="dots.result===false">
+          <circle *ngIf="model.r==dots.r" [attr.cx]="(((dots.x)*80/ model.r+160))"
+                  [attr.cy]="((-1*dots.y*80)/ model.r+160)" r="3" fill="red"></circle>
+        </ng-container>
+      </ng-container>
+      <!--</ng-container>-->
+    </svg>
   </form>
 </div>
 
-<div class="MainPanels" id="Fields" >
-<form (ngSubmit)=" !isNaN(model.y) && (model.y <= 5) && (model.y >= -5) && (selectedXes.length!=0) && onSubmit()" #fieldsForm="ngForm">
-  Радиус:
-   <span id = "radPan" class="MainPanels" *ngFor="let radius of radiuses">
+<div class="MainPanels" id="Fields">
+  <form (ngSubmit)=" !isNaN(model.y) && (model.y <= 5) && (model.y >= -5) && (selectedXes.length!=0) && onSubmit()"
+        #fieldsForm="ngForm">
+    Радиус:
+    <span id="radPan" class="MainPanels" *ngFor="let radius of radiuses">
       <input type="radio" name="rad" [(ngModel)]="model.r"
              [value]="radius.value"
              [checked]="model.r ==='0.5'">
       {{radius.display}}
    </span>
-  <br>
+    <br>
 
-  Координата Х:
+    Координата Х:
 
     <span class="MainPanels" id="xx" *ngFor="let x of Xes">
       <label>
@@ -45,8 +54,8 @@
       </label>
     </span>
 
-  <br>
-  <span  class="MainPanels" id="yPan">
+    <br>
+    <span class="MainPanels" id="yPan">
     Координата Y:
   <input type="number" max="5" id="yy" required
          min="-5"
@@ -54,33 +63,33 @@
          [(ngModel)]="model.y" name="Ykoord"
          #name="ngModel">
    <label [hidden]="(name.valid || name.pristine)"
-        class="alert alert-danger">
+          class="alert alert-danger">
      Заполните поле!
    </label>
      <label *ngIf="model.y < -5 || model.y > 5"
-          class="alert alert-danger">
+            class="alert alert-danger">
      Необходимо число от -5 до 5!
    </label>
      <label *ngIf="selectedXes.length == 0"
-          class="alert alert-danger">
+            class="alert alert-danger">
      Необходим хотя бы один х!
    </label>
   </span>
-  <br>
-    <button type="submit" class="btn btn-success" [disabled]="!fieldsForm.form.valid"> Проверить </button>
-    <button type="button" class="btn btn-default" (click)="deleteDots()"> Очистить таблицу </button>
-    <button type="button" class="btn btn-default" (click)="onBack()"> Выйти на стартовую </button>
-</form>
+    <br>
+    <button type="submit" class="btn btn-success" [disabled]="!fieldsForm.form.valid"> Проверить</button>
+    <button type="button" class="btn btn-default" (click)="deleteDots()"> Очистить таблицу</button>
+    <button type="button" class="btn btn-default" (click)="onBack()"> Выйти на стартовую</button>
+  </form>
 </div>
 
-<div class="MainPanels" id="CheckTable" >
+<div class="MainPanels" id="CheckTable">
   <table>
-  <tr>
-    <th>X</th>
-    <th>Y</th>
-    <th>R</th>
-    <th>Итог</th>
-  </tr>
+    <tr>
+      <th>X</th>
+      <th>Y</th>
+      <th>R</th>
+      <th>Итог</th>
+    </tr>
     <tr *ngFor="let dot of dotsCollection">
       <td>{{dot.x}}</td>
       <td>{{dot.y}}</td>
