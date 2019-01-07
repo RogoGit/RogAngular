@@ -46,12 +46,6 @@ export class AreaComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.dotsCollection = [
-    // [{x: '1', y: '0.3', r: '0.5', res: true}, {x: '-1', y: '-0.6', r: '0.5', res: false}],
-    // [{x: '1', y: '0.3', r: '1', res: true}, {x: '-1', y: '-0.6', r: '1', res: false}],
-    // [{x: '1', y: '0.3', r: '1.5', res: true}, {x: '-1', y: '-0.6', r: '1.5', res: false}],
-    // {x: '1', y: '0.3', r: '1', res: true}, {x: '-1', y: '-0.6', r: '2', res: false}
-    // ];
     this.server.getAllDots().subscribe(dots => this.dotsCollection = dots);
   }
 
@@ -70,10 +64,7 @@ export class AreaComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    let math = console;
-    math.log(this.selectedXes.length);
     for (let i = 0; i < this.selectedXes.length; i++) {
-      math.log(this.selectedXes[i]);
       let dot = new Dot(this.selectedXes[i], this.model.y, this.model.r, this.model.result);
       this.addDot(dot);
     }

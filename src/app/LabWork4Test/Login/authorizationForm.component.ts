@@ -48,6 +48,7 @@ export class AuthorizationFormComponent {
             response.username,
             response.password,
           );
+
           this._router.navigate(['/MainPage']);
         },
         (error) => {
@@ -61,10 +62,14 @@ export class AuthorizationFormComponent {
       .signUp(this.model.username, this.model.password)
       .subscribe(
         (response) => {
-          this.auth.doSignIn(
-            response.username,
-            response.password,
-          );
+          if (response != null) {
+            this.auth.doSignIn(
+              response.username,
+              response.password,
+            );
+          } else {
+            //TODO
+          }
           this._router.navigate(['/MainPage']);
         },
         (error) => {

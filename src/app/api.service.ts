@@ -38,9 +38,7 @@ export class ApiService {
     return this.http
       .get(URL + '/main/dots', {headers: headers})
       .map(response => {
-        let dots = response as Dot[];
-        console.log(dots);
-        return dots;//я присылаю json он вроде должен сам интепретирвоать их как Dot
+        return response as Dot[];
       }).catch(this.handleError);
   }
 
@@ -52,7 +50,7 @@ export class ApiService {
     return this.http
       .post(URL + '/main/add', dot, {headers: headers})
       .map(response => {
-        return response as Dot; //я присылаю json он вроде должен сам интепретирвоать их как Dot
+        return response as Dot;
       })
       .catch(this.handleError);
   }
@@ -70,15 +68,13 @@ export class ApiService {
   public signIn(username: string, password: string): Observable<User> {
     usernamePasswordBasic = btoa(username + ':' + password);
     const headers = new HttpHeaders({
-      'Authorization': `Basic ${usernamePasswordBasic}`, //это такая авторизация
+      'Authorization': `Basic ${usernamePasswordBasic}`,
       'cache-control': 'no-cache'
     });
     return this.http
       .get(URL + '/auth/info', {headers: headers})
       .map(response => {
-        let user = response as User;
-        console.log(user);
-        return user;// возможно это не работает
+        return response as User;
       })
       .catch(this.handleError);
   }
