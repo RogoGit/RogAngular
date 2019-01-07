@@ -14,6 +14,9 @@ const URL = environment.apiUrl;
 
 @Injectable()
 export class ApiService {
+  username: string;
+  password: string;
+
   constructor(
     private http: HttpClient,
     private session: SessionService
@@ -27,18 +30,23 @@ export class ApiService {
 
   public getAllDots(): Observable<Dot[]> {
     const headers = new HttpHeaders({
-      'Authorization': `Basic ${btoa('user' + ':' + 'pass')}`, //это такая авторизация
+      'Authorization': `Basic cTpx`,
       'cache-control': 'no-cache'
     });
     return this.http
       .get(URL + '/main/dots', {headers: headers})
       .map(response => {
-        return response as Dot[]; //я присылаю json он вроде должен сам интепретирвоать их как Dot
+        let dots = response as Dot[];
+        console.log(dots);
+        return dots;//я присылаю json он вроде должен сам интепретирвоать их как Dot
       }).catch(this.handleError);
   }
 
   public addDot(dot: Dot): Observable<Dot> {
-    const headers = new HttpHeaders({'cache-control': 'no-cache'});
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${btoa(this.username + ':' + this.password)}`,
+      'cache-control': 'no-cache'
+    });
     return this.http
       .post(URL + '/main/add', dot, {headers: headers})
       .map(response => {
@@ -48,7 +56,10 @@ export class ApiService {
   }
 
   public deleteAllDots(): Observable<null> {
-    const headers = new HttpHeaders({'cache-control': 'no-cache'});
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${btoa(this.username + ':' + this.password)}`,
+      'cache-control': 'no-cache'
+    });
     return this.http
       .post(URL + '/main/delete', {headers: headers})
       .map(response => null)
@@ -56,6 +67,10 @@ export class ApiService {
   }
 
   public signIn(username: string, password: string): Observable<User> {
+    this.username = username;
+    this.password = password;
+    console.log(this.username);
+    console.log(this.password);
     const headers = new HttpHeaders({
       'Authorization': `Basic ${btoa(username + ':' + password)}`, //это такая авторизация
       'cache-control': 'no-cache'
@@ -63,13 +78,18 @@ export class ApiService {
     return this.http
       .get(URL + '/auth/info', {headers: headers})
       .map(response => {
-        return response as User;// возможно это не работает
+        let user = response as User;
+        console.log(user);
+        return user;// возможно это не работает
       })
       .catch(this.handleError);
   }
 
   public logout() {
-    const headers = new HttpHeaders({'cache-control': 'no-cache'});
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${btoa(this.username + ':' + this.password)}`,
+      'cache-control': 'no-cache'
+    });
     return this.http
       .post(URL + '/auth/logout', null, {headers: headers})
       .map(response => null)
