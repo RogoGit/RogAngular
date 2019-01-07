@@ -12,9 +12,12 @@ import {User} from "./LabWork4Test/Login/User";
 
 const URL = environment.apiUrl;
 
-@Injectable()
+let usernamePasswordBasic: string;
+
+@Injectable({
+  providedIn: 'root',
+})
 export class ApiService {
-  usernamePasswordBasic: string;
 
   constructor(
     private http: HttpClient,
@@ -29,61 +32,56 @@ export class ApiService {
 
   public getAllDots(): Observable<Dot[]> {
     const headers = new HttpHeaders({
-      'Authorization': `Basic ${this.usernamePasswordBasic}`,
+      'Authorization': `Basic ${usernamePasswordBasic}`,
       'cache-control': 'no-cache'
     });
     return this.http
       .get(URL + '/main/dots', {headers: headers})
       .map(response => {
-        let dots = response as Dot[];
-        console.log(dots);
-        return dots;//я присылаю json он вроде должен сам интепретирвоать их как Dot
+        return response as Dot[];
       }).catch(this.handleError);
   }
 
   public addDot(dot: Dot): Observable<Dot> {
     const headers = new HttpHeaders({
-      'Authorization': `Basic ${this.usernamePasswordBasic}`,
+      'Authorization': `Basic ${usernamePasswordBasic}`,
       'cache-control': 'no-cache'
     });
     return this.http
       .post(URL + '/main/add', dot, {headers: headers})
       .map(response => {
-        return response as Dot; //я присылаю json он вроде должен сам интепретирвоать их как Dot
+        return response as Dot;
       })
       .catch(this.handleError);
   }
 
-  public deleteAllDots(): Observable<null> {
+  public deleteAllDots(){
     const headers = new HttpHeaders({
-      'Authorization': `Basic ${this.usernamePasswordBasic}`,
+      'Authorization': `Basic ${usernamePasswordBasic}`,
       'cache-control': 'no-cache'
     });
     return this.http
-      .post(URL + '/main/delete', {headers: headers})
-      .map(response => null)
+      .post(URL + '/main/delete', null,{headers: headers})
       .catch(this.handleError);
   }
 
   public signIn(username: string, password: string): Observable<User> {
-    this.usernamePasswordBasic = btoa(username + ':' + password);
+    usernamePasswordBasic = btoa(username + ':' + password);
     const headers = new HttpHeaders({
-      'Authorization': `Basic ${this.usernamePasswordBasic}`, //это такая авторизация
+      'Authorization': `Basic ${usernamePasswordBasic}`,
       'cache-control': 'no-cache'
     });
     return this.http
       .get(URL + '/auth/info', {headers: headers})
       .map(response => {
-        let user = response as User;
-        console.log(user);
-        return user;// возможно это не работает
+        return response as User;
       })
       .catch(this.handleError);
   }
 
   public logout() {
     const headers = new HttpHeaders({
-      'Authorization': `Basic ${this.usernamePasswordBasic}`,
+      'Authorization': `Basic ${usernamePasswordBasic}`,
       'cache-control': 'no-cache'
     });
     return this.http
@@ -93,6 +91,7 @@ export class ApiService {
   }
 
   public signUp(username: string, password: string): Observable<User> {
+    usernamePasswordBasic = btoa(username + ':' + password);
     return this.http
       .post(URL + '/auth/registration', {
         username,
