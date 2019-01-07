@@ -58,7 +58,15 @@ export class ApiService {
     });
     return this.http
       .post(URL + '/auth/info', null, {headers: headers})
-      .map(response => console.log(response))
+      .map(response => console.log(response)) // он вернёт json клиента. логин, пароль, и т.д.
+      .catch(this.handleError);
+  }
+
+  public logout() {
+    const headers = new HttpHeaders({'cache-control': 'no-cache'});
+    return this.http
+      .post(URL + '/auth/logout', null, {headers: headers})
+      .map(response => null)
       .catch(this.handleError);
   }
 
