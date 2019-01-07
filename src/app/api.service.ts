@@ -1,20 +1,21 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
-import { Http, Response, Request, Headers, RequestOptions } from '@angular/http';
-import { Dot } from './LabWork4Test/MainPage/Area/Dot';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {environment} from '../environments/environment';
+import {Http, Response, Request, Headers, RequestOptions} from '@angular/http';
+import {Dot} from './LabWork4Test/MainPage/Area/Dot';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { SessionService} from './session.service';
+import {SessionService} from './session.service';
+import {HttpHeaders, HttpClient} from "@angular/common/http";
 
 const URL = environment.apiUrl;
 
 @Injectable()
 export class ApiService {
   constructor(
-    private http: Http,
-  private session: SessionService
+    private http: HttpClient,
+    private session: SessionService
   ) {
   }
 
@@ -23,61 +24,60 @@ export class ApiService {
     return Observable.throw(error);
   }
 
-  // get
   public getAllDots(): Observable<Dot[]> {
-    const options = this.getRequestOptions();
+    const headers = new HttpHeaders({'cache-control': 'no-cache'});
     return this.http
-      .get(URL + '/main/dots', options)
+      .get(URL + '/main/dots', {headers: headers})
       .map(response => {
-        const dots = response.json();
-        return dots.map((dot) => new dots(dot));
+        return response as Dot[]; //я присылаю json он вроде должен сам интепретирвоать их как Dot
       }).catch(this.handleError);
   }
 
-  // post
-  /*public addDot(dot: Dot): Observable<Dot> {
-    const options = this.getRequestOptions();
-     return this.http
-      .post(URL + '/dots', dot, options)
-      .map(success => success.status)
-     //  .map(response => {
-    // const dots = response.json();
-    //  return dots;
-      // })
-      .catch(this.handleError);
-  }*/
-
-// delete
-  public deleteAllDots(): Observable<null> {
-    const options = this.getRequestOptions();
+  public addDot(dot: Dot): Observable<Dot> {
+    const headers = new HttpHeaders({'cache-control': 'no-cache'});
     return this.http
-      .delete(URL + '/dots', options)
+      .post(URL + '/main/add', dot, {headers: headers})
+      .map(response => {
+        return response as Dot; //я присылаю json он вроде должен сам интепретирвоать их как Dot
+      })
+      .catch(this.handleError);
+  }
+
+  public deleteAllDots(): Observable<null> {
+    const headers = new HttpHeaders({'cache-control': 'no-cache'});
+    return this.http
+      .delete(URL + '/main/delete', {headers: headers})
       .map(response => null)
       .catch(this.handleError);
   }
+
   public signIn(username: string, password: string) {
-    return this.http
-      .post(URL + '/sign-in', {
-        username,
-        password
-      })
-      .map(response => response.json())
-      .catch(this.handleError);
-  }
-  public signUp(username: string, password: string) {
-    return this.http
-      .post(URL + '/sign-up', {
-        username,
-        password
-      })
-      .map(response => response.json())
-      .catch(this.handleError);
-  }
-  private getRequestOptions() {
-    const headers = new Headers({
-      'Authorization': 'Bearer ' + this.session.accessToken
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${btoa(username + ':' + password)}`, //это такая авторизация
+      'cache-control': 'no-cache'
     });
-    return new RequestOptions({ headers });
+    return this.http
+      .post(URL + '/auth/info', null, {headers: headers})
+      .map(response => console.log(response)) // он вернёт json клиента. логин, пароль, и т.д.
+      .catch(this.handleError);
+  }
+
+  public logout() {
+    const headers = new HttpHeaders({'cache-control': 'no-cache'});
+    return this.http
+      .post(URL + '/auth/logout', null, {headers: headers})
+      .map(response => null)
+      .catch(this.handleError);
+  }
+
+  public signUp(username: string, password: string): Observable<boolean> {
+    return this.http
+      .post(URL + '/auth/registration', {
+        username,
+        password
+      })
+      .map(response => response as boolean)
+      .catch(this.handleError);
   }
 }
 
