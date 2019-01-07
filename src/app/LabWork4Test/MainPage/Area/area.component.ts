@@ -23,7 +23,7 @@ export class AreaComponent implements OnInit {
   }
 
   model = new Dot('', 0, '0.5', false);
-  dotsCollection: Observable<Dot[]>;
+  dotsCollection: Dot[];
   submitted = false;
   isNaN: Function = Number.isNaN;
   round: Function = Math.round;
@@ -52,8 +52,7 @@ export class AreaComponent implements OnInit {
     // [{x: '1', y: '0.3', r: '1.5', res: true}, {x: '-1', y: '-0.6', r: '1.5', res: false}],
     // {x: '1', y: '0.3', r: '1', res: true}, {x: '-1', y: '-0.6', r: '2', res: false}
     // ];
-    this.server.getAllDots().subscribe();
-    this.dotsCollection = this.server.getAllDots(); // TODO: раскомментим - здесь будем получать точки с сервера (надеюсь)
+    this.server.getAllDots().subscribe(dots => this.dotsCollection = dots);
   }
 
   deleteDots() {

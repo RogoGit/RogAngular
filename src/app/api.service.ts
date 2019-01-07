@@ -14,8 +14,7 @@ const URL = environment.apiUrl;
 
 @Injectable()
 export class ApiService {
-  username: string;
-  password: string;
+  usernamePasswordBasic: string;
 
   constructor(
     private http: HttpClient,
@@ -30,7 +29,7 @@ export class ApiService {
 
   public getAllDots(): Observable<Dot[]> {
     const headers = new HttpHeaders({
-      'Authorization': `Basic cTpx`,
+      'Authorization': `Basic ${this.usernamePasswordBasic}`,
       'cache-control': 'no-cache'
     });
     return this.http
@@ -44,7 +43,7 @@ export class ApiService {
 
   public addDot(dot: Dot): Observable<Dot> {
     const headers = new HttpHeaders({
-      'Authorization': `Basic ${btoa(this.username + ':' + this.password)}`,
+      'Authorization': `Basic ${this.usernamePasswordBasic}`,
       'cache-control': 'no-cache'
     });
     return this.http
@@ -57,7 +56,7 @@ export class ApiService {
 
   public deleteAllDots(): Observable<null> {
     const headers = new HttpHeaders({
-      'Authorization': `Basic ${btoa(this.username + ':' + this.password)}`,
+      'Authorization': `Basic ${this.usernamePasswordBasic}`,
       'cache-control': 'no-cache'
     });
     return this.http
@@ -67,12 +66,9 @@ export class ApiService {
   }
 
   public signIn(username: string, password: string): Observable<User> {
-    this.username = username;
-    this.password = password;
-    console.log(this.username);
-    console.log(this.password);
+    this.usernamePasswordBasic = btoa(username + ':' + password);
     const headers = new HttpHeaders({
-      'Authorization': `Basic ${btoa(username + ':' + password)}`, //это такая авторизация
+      'Authorization': `Basic ${this.usernamePasswordBasic}`, //это такая авторизация
       'cache-control': 'no-cache'
     });
     return this.http
@@ -87,7 +83,7 @@ export class ApiService {
 
   public logout() {
     const headers = new HttpHeaders({
-      'Authorization': `Basic ${btoa(this.username + ':' + this.password)}`,
+      'Authorization': `Basic ${this.usernamePasswordBasic}`,
       'cache-control': 'no-cache'
     });
     return this.http

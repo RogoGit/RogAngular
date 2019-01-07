@@ -15,7 +15,7 @@
     <text x="180" y="80">{{model.r}}</text>
     <!--<ng-container *ngIf="dotsCollection!==[]" >-->
     <ng-container *ngFor="let dots of dotsCollection">
-    <circle *ngIf="model.r==dots.r" [attr.cx] = "(((dots.x)*80/ model.r+160))" [attr.cy]="((-1*dots.y*80)/ model.r+160)" r="3" />
+    <circle *ngIf="model.r==dots.r" [attr.cx] = "(((dots.x)*80/ model.r+160))" [attr.cy]="((-1*dots.y*80)/ model.r+160)" r="3"></circle>
     </ng-container>
     <!--</ng-container>-->
   </svg>
@@ -85,7 +85,7 @@
       <td>{{dot.x}}</td>
       <td>{{dot.y}}</td>
       <td>{{dot.r}}</td>
-      <td>{{dot.res}}</td>
+      <td>{{dot.result}}</td>
     </tr>
   </table>
 </div>
