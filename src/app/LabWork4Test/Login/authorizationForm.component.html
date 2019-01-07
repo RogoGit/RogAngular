@@ -6,9 +6,9 @@
       <label for="formName">Логин</label>
       <input type="text" class="form-control" id="formName"
              required
-             [(ngModel)]="model.name" name="nameInp"
+             [(ngModel)]="model.username" name="nameInp"
              #name="ngModel">
-      <!--  <div [hidden]="name.valid || name.pristine"
+      <!--  <div [hidden]="username.valid || username.pristine"
              class="alert alert-danger">
           Необходимо заполнить это поле
         </div> -->
@@ -19,21 +19,20 @@
       <input type="password" class="form-control" id="pass" required
              [(ngModel)]="model.password" name="passw"
              #name="ngModel">
-      <!-- <div [hidden]="name.valid || name.pristine"
+      <!-- <div [hidden]="username.valid || username.pristine"
             class="alert alert-danger">
          Необходимо заполнить оба поля!
        </div> -->
     </div>
 
-    <button type="submit" name="in" class="btn btn-success" [disabled]="!regForm.form.valid"> Войти </button>
-    <button type="button" class="btn btn-default"  (click)="regForm?.reset()"> Очистить поля </button>
+    <button type="submit" name="in" class="btn btn-success" [disabled]="!regForm.form.valid"> Войти</button>
+    <button type="button" class="btn btn-default" (click)="regForm?.reset()"> Очистить поля</button>
 
     <br>
     <p style="font-size: 14pt"> Нет аккаунта? </p>
-    <button type="submit" name="up" class="btn btn-success" [disabled]="!regForm.form.valid"> Зарегистрировать </button>
+    <button type="submit" name="up" class="btn btn-success" [disabled]="!regForm.form.valid"> Зарегистрировать</button>
   </form>
 </div>
-
 
 
 <!--<div class="container">
@@ -42,9 +41,9 @@
   <div class="form-group">
      <label for="formName">Name</label>
     <input type="text" class="form-control" id="formName" required
-           [(ngModel)]="model.name" name="name"
-           #name="ngModel"/>
-    <div [hidden]="name.valid || name.pristine"
+           [(ngModel)]="model.username" username="username"
+           #username="ngModel"/>
+    <div [hidden]="username.valid || username.pristine"
          style="width: 40%"
          class="alert alert-danger">
       Name is required
@@ -53,9 +52,9 @@
   <div class="form-group">
     <label for="pass">Alter Ego</label>
     <input type="password" class="form-control" id="pass" required
-           [(ngModel)]="model.name" name="name"
-           #name="ngModel"/>
-    <div [hidden]="name.valid || name.pristine"
+           [(ngModel)]="model.username" username="username"
+           #username="ngModel"/>
+    <div [hidden]="username.valid || username.pristine"
          style="width: 40%"
          class="alert alert-danger">
       Name is required
