@@ -74,6 +74,10 @@
             class="alert alert-danger">
      Необходим хотя бы один х!
    </label>
+      <label *ngIf="isError"
+             class="alert alert-danger">
+     Проблемы с сервером
+   </label>
   </span>
     <br>
     <button type="submit" class="btn btn-success" [disabled]="!fieldsForm.form.valid"> Проверить</button>

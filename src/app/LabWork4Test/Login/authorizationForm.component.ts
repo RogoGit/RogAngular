@@ -18,12 +18,10 @@ export class AuthorizationFormComponent {
     private auth: AuthService,
   ) {
   }
-
-  failed = true;
-  busy = false;
   submitted = false;
   model = new User('', '');
-
+  failed = false;
+  busy = false;
   onSubmit() {
     this.submitted = true;
     const buttonName = document.activeElement.getAttribute('name');
@@ -68,12 +66,12 @@ export class AuthorizationFormComponent {
               response.password,
             );
           } else {
-            //TODO
+            this.busy = true;
           }
           this._router.navigate(['/MainPage']);
         },
         (error) => {
-          this.busy = true;
+        this.failed = true;
         }
       );
   }
