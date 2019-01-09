@@ -1,18 +1,15 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../environments/environment';
-import {Http, Response, Request, Headers, RequestOptions} from '@angular/http';
+import {Response} from '@angular/http';
 import {Dot} from './LabWork4Test/MainPage/Area/Dot';
 import {Observable} from 'rxjs/Observable';
+import { throwError } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {SessionService} from './session.service';
-import {HttpHeaders, HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "./LabWork4Test/Login/User";
-
-const URL = environment.apiUrl;
-
-let usernamePasswordBasic: string;
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +24,7 @@ export class ApiService {
 
   private handleError(error: Response | any) {
     console.error('ApiService::handleError', error);
-    return Observable.throw(error);
+    return Observable.throwError(error.statusText);
   }
 
   public getAllDots(): Observable<Dot[]> {
@@ -55,13 +52,13 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  public deleteAllDots(){
+  public deleteAllDots() {
     const headers = new HttpHeaders({
       'Authorization': `Basic ${usernamePasswordBasic}`,
       'cache-control': 'no-cache'
     });
     return this.http
-      .post(URL + '/main/delete', null,{headers: headers})
+      .post(URL + '/main/delete', null, {headers: headers})
       .catch(this.handleError);
   }
 
@@ -76,7 +73,7 @@ export class ApiService {
       .map(response => {
         return response as User;
       })
-      .catch(this.handleError);
+      // .catch(this.handleError);
   }
 
   public logout() {
@@ -101,4 +98,8 @@ export class ApiService {
       .catch(this.handleError);
   }
 }
+
+const URL = environment.apiUrl;
+
+let usernamePasswordBasic: string;
 

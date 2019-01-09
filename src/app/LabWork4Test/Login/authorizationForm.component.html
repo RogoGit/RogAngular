@@ -27,24 +27,23 @@
 
     <button type="submit" name="in" class="btn btn-success" [disabled]="!regForm.form.valid"> Войти</button>
     <button type="button" class="btn btn-default" (click)="regForm?.reset()"> Очистить поля</button>
-  <br/>
+    <br/>
 
     <label *ngIf="failed"
            class="alert alert-danger">
       Проблема с сервером
     </label>
-    <br>
     <label *ngIf="busy"
            class="alert alert-danger">
       Имя уже занято!
     </label>
     <label *ngIf="notExist"
            class="alert alert-danger">
-      Нет такого имени!
+      Ошибка входа!
     </label>
-    <br>
     <p style="font-size: 14pt"> Нет аккаунта? </p>
-    <button type="submit" name="up" class="btn btn-success" [disabled]="!regForm.form.valid"> Зарегистрироваться</button>
+    <button type="submit" name="up" class="btn btn-success" [disabled]="!regForm.form.valid"> Зарегистрироваться
+    </button>
   </form>
 </div>
 

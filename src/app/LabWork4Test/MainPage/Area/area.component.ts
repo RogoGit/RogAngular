@@ -47,13 +47,18 @@ export class AreaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.server.getAllDots().subscribe(dots => { this.dotsCollection = dots; this.isError = false; },
-                                       error => this.isError = true);
+    this.server.getAllDots().subscribe(dots => {
+        this.dotsCollection = dots;
+        this.isError = false;
+      },
+      error => this.isError = true);
   }
 
   deleteDots() {
-    this.server.deleteAllDots().subscribe( ok => this.isError = false, error => this.isError = true );
-    this.dotsCollection = [];
+    this.server.deleteAllDots().subscribe(ok => {
+      this.isError = false;
+      this.dotsCollection = [];
+    }, error => this.isError = true);
   }
 
   getCoord(event) {
@@ -78,7 +83,10 @@ export class AreaComponent implements OnInit {
   }
 
   addDot(dot: Dot) {
-    this.server.addDot(dot).subscribe(d => { this.dotsCollection.push(d); this.isError = false; },
-                                                 error => this.isError = true );
+    this.server.addDot(dot).subscribe(d => {
+        this.dotsCollection.push(d);
+        this.isError = false;
+      },
+      error => this.isError = true);
   }
 }

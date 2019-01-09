@@ -2,7 +2,12 @@ import {Component} from '@angular/core';
 import {User} from './User';
 import {Router} from '@angular/router';
 import {AuthService} from '../../auth.service';
-import {ApiService} from '../../api.service';
+import {ApiService} from '../../api.service'
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+import {throwError} from 'rxjs';
 import {headersToString} from 'selenium-webdriver/http';
 
 @Component({
@@ -19,11 +24,13 @@ export class AuthorizationFormComponent {
     private auth: AuthService,
   ) {
   }
+
   submitted = false;
   model = new User('', '');
   failed = false;
   busy = false;
   notExist = false;
+
   onSubmit() {
     this.submitted = true;
     this.failed = false;
@@ -55,8 +62,11 @@ export class AuthorizationFormComponent {
           this._router.navigate(['/MainPage']);
         },
         (error) => {
-          if (error.status === 401) { this.notExist = true; } else {
-            this.failed = true; }
+          if (error.status == 401) {
+            this.notExist = true;
+          } else {
+            this.failed = true;
+          }
         }
       );
   }
