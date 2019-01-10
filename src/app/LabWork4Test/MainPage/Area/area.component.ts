@@ -79,6 +79,7 @@ export class AreaComponent implements OnInit {
 
   onBack() {
     this.auth.doSignOut();
+    this.server.logout().subscribe();
     this._router.navigate(['/']);
   }
 

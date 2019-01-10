@@ -62,7 +62,7 @@ export class AuthorizationFormComponent {
           this._router.navigate(['/MainPage']);
         },
         (error) => {
-          if (error.status == 401) {
+          if (error.status == 418) {
             this.notExist = true;
           } else {
             this.failed = true;
