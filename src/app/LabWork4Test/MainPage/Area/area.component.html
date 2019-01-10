@@ -62,21 +62,21 @@
          appYvalid
          [(ngModel)]="model.y" name="Ykoord"
          #name="ngModel">
-   <label [hidden]="(name.valid || name.pristine)"
+   <label [hidden]="((name.valid || name.pristine)&&(isError))"
           class="alert alert-danger">
      Заполните поле!
    </label>
-     <label *ngIf="model.y < -5 || model.y > 5"
+     <label *ngIf="((model.y < -5 || model.y > 5)&&(!isError))"
             class="alert alert-danger">
-     Необходимо число от -5 до 5!
+     Y от -5 до 5!
    </label>
-     <label *ngIf="selectedXes.length == 0"
+     <label *ngIf="((selectedXes.length == 0)&&(!isError))"
             class="alert alert-danger">
-     Необходим хотя бы один х!
+     Выберите X!
    </label>
       <label *ngIf="isError"
              class="alert alert-danger">
-     Проблемы с сервером
+     Сервера нет...
    </label>
   </span>
     <br>
